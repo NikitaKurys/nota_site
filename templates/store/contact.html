@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <title>N.O.T.A - Контакты</title>
+  <meta name="description" content="Morden Bootstrap HTML5 Template">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static '/store/img/favicon.ico' %}">
+    
+  <!-- ======= All CSS Plugins here ======== -->
+  <link rel="stylesheet" href="{% static '/store/css/plugins/swiper-bundle.min.css' %}">
+  <link rel="stylesheet" href="{% static '/store/css/plugins/glightbox.min.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Karma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Plugin css -->
+  <link rel="stylesheet" href="{% static '/store/css/vendor/bootstrap.min.css' %}">
+
+  <!-- Custom Style CSS -->
+  <link rel="stylesheet" href="{% static '/store/css/style.css' %}">
+
+</head>
+
+<body>
+
+    <!-- Start preloader -->
+    <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="L" class="letters-loading">
+                        L
+                    </span>
+                    
+                    <span data-text-preloader="O" class="letters-loading">
+                        O
+                    </span>
+                    
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                    
+                    <span data-text-preloader="D" class="letters-loading">
+                        D
+                    </span>
+                    
+                    <span data-text-preloader="I" class="letters-loading">
+                        I
+                    </span>
+                    
+                    <span data-text-preloader="N" class="letters-loading">
+                        N
+                    </span>
+                    
+                    <span data-text-preloader="G" class="letters-loading">
+                        G
+                    </span>
+                </div>
+            </div>	
+
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+        </div>
+    </div>
+    <!-- End preloader -->
+    
+<!-- Start header area -->
+<header class="header__section">
+    <div class="main__header position__relative header__sticky">
+        <div class="container">
+            <div class="main__header--inner d-flex justify-content-between align-items-center">
+                <div class="offcanvas__header--menu__open ">
+                    <a class="offcanvas__header--menu__open--btn" data-offcanvas>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon offcanvas__header--menu__open--svg"
+                             viewBox="0 0 512 512">
+                            <path fill="currentColor" stroke="currentColor" stroke-linecap="round"
+                                  stroke-miterlimit="10" stroke-width="32" d="M80 160h352M80 256h352M80 352h352"/>
+                        </svg>
+                        <span class="visually-hidden">Offcanvas Menu Open</span>
+                    </a>
+                </div>
+                <div class="main__logo" id="nota_logo">
+                    <h1 class="main__logo--title"><a class="main__logo--link" href=" /">
+                        <img class="main__logo--img" src="{% static '/store/img/logo/nav-log.webp' %}" alt="logo-img">
+                    </a></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Offcanvas header menu -->
+    <div class="offcanvas__header">
+        <div class="offcanvas__inner">
+            <div class="offcanvas__logo" id="logo">
+                <a class="offcanvas__logo_link" href="/">
+                    <img src="{% static '/store/img/logo/nav-log.webp' %}" alt="Logo-img" width="158" height="36">
+                </a>
+                <button class="offcanvas__close--btn" id="close" data-offcanvas>close</button>
+            </div>
+            <nav class="offcanvas__menu">
+                <ul class="offcanvas__menu_ul">
+                    <li class="offcanvas__menu_li">
+                        <a class="offcanvas__menu_item">Категории</a>
+                        <ul class="offcanvas__sub_menu">
+                            {% for category in categories %}
+                            <li class="offcanvas__sub_menu_li">
+                                <a href="{% url 'shop' category.slug %}" class="offcanvas__sub_menu_item">
+                                    {{ category.name }}</a>
+                                {% if category.maincategory.all %}
+                                <ul class="offcanvas__sub_menu">
+                                    {% for cat in category.maincategory.all %}
+                                    <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item"
+                                                                          href="{% url 'shop_slave' cat.slug %}">
+                                        {{ cat.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- End Offcanvas header menu -->
+
+        <!-- Start serch box area -->
+        <div class="predictive__search--box ">
+            <div class="predictive__search--box__inner">
+                <h2 class="predictive__search--title">Search Products</h2>
+                <form class="predictive__search--form" action="#">
+                    <label>
+                        <input class="predictive__search--input" placeholder="Search Here" type="text">
+                    </label>
+                    <button class="predictive__search--button text-white" aria-label="search button"><svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="30.51" height="25.443" viewBox="0 0 512 512"><path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"/></svg>  </button>
+                </form>
+            </div>
+            <button class="predictive__search--close__btn" aria-label="search close" data-offcanvas>
+                <svg class="predictive__search--close__icon" xmlns="http://www.w3.org/2000/svg" width="40.51" height="30.443"  viewBox="0 0 512 512"><path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
+            </button>
+        </div>
+        <!-- End serch box area -->
+        
+    </header>
+    <!-- End header area -->
+
+    <main class="main__content_wrapper">
+        
+        <!-- Start breadcrumb section -->
+        <div class="breadcrumb__section breadcrumb__bg">
+            <div class="container">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <div class="breadcrumb__content text-center">
+                            <ul class="breadcrumb__content--menu d-flex justify-content-center">
+                                <li class="breadcrumb__content--menu__items"><a href="/">Главная</a></li>
+                                <li class="breadcrumb__content--menu__items"><span>Контакты</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End breadcrumb section -->
+
+        <!-- Start contact section -->
+        <section class="contact__section section--padding">
+            <div class="container">
+                <div class="main__contact--area position__relative">
+                    <form class="contact__form--inner" action="#">
+                        {% for contents in content %}
+                        {% if contents.name == "МК2" %}
+                        <div class="test__slayer">
+                            <img class="test__img"
+                                 src="{{ contents.image }}" alt="slider-img">
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </form>
+                    <div class="contact__info border-radius-5">
+                        <div class="contact__info--items">
+                            <h3 class="contact__info--content__title text-white mb-15">Связаться с нами</h3>
+                            <div class="contact__info--items__inner d-flex">
+                                <div class="contact__info--icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="31.568" height="31.128" viewBox="0 0 31.568 31.128">
+                                        <path id="ic_phone_forwarded_24px" d="M26.676,16.564l7.892-7.782L26.676,1V5.669H20.362v6.226h6.314Zm3.157,7a18.162,18.162,0,0,1-5.635-.887,1.627,1.627,0,0,0-1.61.374l-3.472,3.424a23.585,23.585,0,0,1-10.4-10.257l3.472-3.44a1.48,1.48,0,0,0,.395-1.556,17.457,17.457,0,0,1-.9-5.556A1.572,1.572,0,0,0,10.1,4.113H4.578A1.572,1.572,0,0,0,3,5.669,26.645,26.645,0,0,0,29.832,32.128a1.572,1.572,0,0,0,1.578-1.556V25.124A1.572,1.572,0,0,0,29.832,23.568Z" transform="translate(-3 -1)" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="contact__info--content">
+                                    <p class="contact__info--content__desc text-white">По вопросам продукции <br> <a href="tel:+79169378989">+7 (916) 937 89 89</a> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact__info--items">
+                            <h3 class="contact__info--content__title text-white mb-15">Расположение магазина</h3>
+                            <div class="contact__info--items__inner d-flex">
+                                <div class="contact__info--icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="31.57" height="31.13" viewBox="0 0 31.57 31.13">
+                                        <path id="ic_account_balance_24px" d="M5.323,14.341V24.718h4.985V14.341Zm9.969,0V24.718h4.985V14.341ZM2,32.13H33.57V27.683H2ZM25.262,14.341V24.718h4.985V14.341ZM17.785,1,2,8.412v2.965H33.57V8.412Z" transform="translate(-2 -1)" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="contact__info--content">
+                                    <p class="contact__info--content__desc text-white" id="text">  Тамбовская область, г. Котовск, ул. Пионерская, д. 12</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact__info--items">
+                            <h3 class="contact__info--content__title text-white mb-15">Подписывайтесь на нас</h3>
+                                   <ul class="social__share footer__social d-flex">
+                                        <li class="social__share--list">
+                                            <a class="social__share--icon" target="_blank"
+                                               href="https://vk.com/parfum_nota">
+                                                <svg style="color: rgb(0, 0, 0);" xmlns="http://www.w3.org/2000/svg"
+                                                     width="40" zoomAndPan="magnify" viewBox="0 0 30 30.000001"
+                                                     height="40" preserveAspectRatio="xMidYMid meet" version="1.0">
+                                                    <defs>
+                                                        <clipPath id="id1">
+                                                            <path d="M 2.371094 2.394531 L 26 2.394531 L 26 26 L 2.371094 26 Z M 2.371094 2.394531 "
+                                                                  clip-rule="nonzero" fill="#000000"></path>
+                                                        </clipPath>
+                                                    </defs>
+                                                    <g clip-path="url(#id1)">
+                                                        <path fill="#000000"
+                                                              d="M 13.496094 2.597656 C 10.730469 2.804688 8.210938 3.941406 6.230469 5.875 C 3.625 8.414062 2.375 12.011719 2.839844 15.625 C 3.414062 20.140625 6.601562 23.902344 10.976562 25.234375 C 14.359375 26.265625 18.125 25.652344 20.992188 23.613281 C 24.515625 21.101562 26.347656 16.9375 25.804688 12.675781 C 25.230469 8.15625 22.042969 4.394531 17.667969 3.0625 C 16.304688 2.660156 14.914062 2.503906 13.496094 2.601562 Z M 14.378906 9.773438 C 14.96875 9.832031 15.265625 9.925781 15.398438 10.097656 C 15.433594 10.144531 15.488281 10.261719 15.523438 10.359375 C 15.589844 10.5625 15.59375 10.792969 15.550781 12.527344 C 15.523438 13.609375 15.539062 13.945312 15.628906 14.183594 C 15.726562 14.460938 15.960938 14.585938 16.164062 14.480469 C 16.347656 14.382812 16.777344 13.914062 17.058594 13.492188 C 17.707031 12.53125 18.101562 11.789062 18.574219 10.640625 C 18.671875 10.414062 18.800781 10.261719 18.933594 10.226562 C 18.984375 10.210938 19.742188 10.199219 20.667969 10.195312 L 22.308594 10.191406 L 22.449219 10.25 C 22.632812 10.304688 22.714844 10.429688 22.695312 10.621094 C 22.695312 10.980469 22.320312 11.722656 21.675781 12.625 C 21.585938 12.75 21.253906 13.195312 20.933594 13.613281 C 20.230469 14.535156 20.078125 14.75 19.972656 14.976562 C 19.835938 15.257812 19.871094 15.492188 20.082031 15.765625 C 20.140625 15.84375 20.453125 16.15625 20.769531 16.460938 C 21.65625 17.3125 22.058594 17.757812 22.386719 18.246094 C 22.621094 18.601562 22.714844 18.859375 22.675781 19.085938 C 22.65625 19.207031 22.535156 19.355469 22.394531 19.425781 C 22.230469 19.511719 21.976562 19.527344 20.582031 19.546875 L 19.261719 19.5625 L 19.046875 19.492188 C 18.503906 19.3125 18.140625 19.007812 17.316406 18.054688 C 16.859375 17.527344 16.519531 17.265625 16.285156 17.265625 C 16.070312 17.265625 15.789062 17.550781 15.679688 17.910156 C 15.597656 18.148438 15.570312 18.335938 15.542969 18.75 C 15.515625 19.246094 15.457031 19.355469 15.15625 19.480469 C 15.046875 19.53125 13.683594 19.546875 13.324219 19.507812 C 12.601562 19.429688 11.933594 19.199219 11.269531 18.8125 C 10.304688 18.25 9.714844 17.742188 9.082031 16.9375 C 7.984375 15.53125 7.234375 14.335938 6.324219 12.535156 C 5.976562 11.832031 5.558594 10.925781 5.492188 10.707031 C 5.425781 10.484375 5.519531 10.300781 5.738281 10.230469 C 5.8125 10.207031 6.234375 10.195312 7.191406 10.179688 L 8.539062 10.167969 L 8.695312 10.226562 C 8.941406 10.320312 9.042969 10.445312 9.214844 10.851562 C 9.359375 11.195312 10.136719 12.753906 10.378906 13.191406 C 10.628906 13.628906 10.890625 14 11.121094 14.214844 C 11.402344 14.492188 11.527344 14.558594 11.726562 14.542969 C 11.894531 14.527344 11.9375 14.488281 12.042969 14.261719 C 12.296875 13.714844 12.335938 11.867188 12.109375 11.140625 C 11.980469 10.726562 11.785156 10.570312 11.246094 10.453125 C 11.152344 10.433594 11.152344 10.398438 11.238281 10.273438 C 11.445312 9.976562 11.816406 9.832031 12.523438 9.773438 C 12.910156 9.742188 14.058594 9.738281 14.375 9.773438 Z M 14.378906 9.773438 "
+                                                              fill-opacity="1" fill-rule="nonzero"></path>
+                                                    </g>
+                                                </svg>
+                                                <span class="visually-hidden">VK</span>
+                                            </a>
+                                        </li>
+                                        <li class="social__share--list">
+                                            <a class="social__share--icon" target="_blank" href="https://wa.me/message/HTJESAQ366IVJ1">
+                                                <svg style="color: rgb(0, 0, 0);" xmlns="http://www.w3.org/2000/svg"
+                                                     width="30.87" height="30.87" fill="currentColor"
+                                                     class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                                    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"
+                                                          fill="#000000"></path>
+                                                </svg>
+                                                <span class="visually-hidden">WhatsApp</span>
+                                            </a>
+                                        </li>
+                                        <li class="social__share--list">
+                                            <a class="social__share--icon" target="_blank"
+                                               href="https://instagram.com/n.o.t.a_parfum?igshid=MzRlODBiNWFlZA==">
+                                                <svg style="color: rgb(0, 0, 0);" xmlns="http://www.w3.org/2000/svg"
+                                                     width="30.87" height="30.87" fill="currentColor"
+                                                     class="bi bi-instagram" viewBox="0 0 16 16">
+                                                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
+                                                          fill="#000000"></path>
+                                                </svg>
+                                                <span class="visually-hidden">Instagram</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End contact section -->
+
+        <!-- Start contact map area -->
+        <div class="contact__map--area section--padding pt-0">
+            <iframe class="contact__map--iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2423.8734134748256!2d41.494287158298796!3d52.58998185928185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x413940bbdb4c8505%3A0xe7ea5232981286df!2sUlitsa%20Pionerskaya%2C%2012%2C%20Kotovsk%2C%20Tambovskaya%20oblast&#39;%2C%20393190!5e0!3m2!1sen!2sru!4v1691585437128!5m2!1sen!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <!-- End contact map area -->
+    </main>
+
+<!-- Start footer section -->
+<footer class="footer__section footer__bg">
+    <div class="container">
+        <div class="main__footer section--padding">
+            <div class="row ">
+                <div class="col-lg-4 col-md-8">
+                    <div class="footer__widget">
+                        <h2 class="footer__widget--title d-none d-sm-u-block">About Us
+                            <button class="footer__widget--button" aria-label="footer widget button"></button>
+                            <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
+                                 width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
+                                <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z"
+                                      transform="translate(-6 -8.59)" fill="currentColor"></path>
+                            </svg>
+                        </h2>
+                        <div class="footer__widget--inner">
+                            <div class="footer__logo">
+                                <a class="footer__logo--link" href="/">
+                                    <img class="footer__logo--img" src="{% static '/store/img/logo/footer-logo.webp' %}"
+                                         alt="logo-img">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-7">
+                    <div class="footer__widget">
+                        <div class="footer__widget--inner">
+                            <div class="footer__widget">
+                                <h2 class="footer__widget--title d-none d-sm-u-block">About Us
+                                    <button class="footer__widget--button" aria-label="footer widget button"></button>
+                                    <svg class="footer__widget--title__arrowdown--icon"
+                                         xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394"
+                                         viewBox="0 0 10.355 6.394">
+                                        <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z"
+                                              transform="translate(-6 -8.59)" fill="currentColor"></path>
+                                    </svg>
+                                </h2>
+                                <div class="footer__widget--inner">
+                                    <ul class="footer__widget--info">
+                                        <li class="footer__widget--info_list">
+                                            <svg class="footer__widget--info__icon" width="20" height="23"
+                                                 viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18.3334 10.1666C18.3334 14.769 10.0001 20.9999 10.0001 20.9999C10.0001 20.9999 1.66675 14.769 1.66675 10.1666C1.66675 5.56421 5.39771 1.83325 10.0001 1.83325C14.6025 1.83325 18.3334 5.56421 18.3334 10.1666Z"
+                                                      stroke="currentColor" stroke-width="2"></path>
+                                                <ellipse cx="10.0001" cy="10.1667" rx="2.5" ry="2.5"
+                                                         stroke="currentColor" stroke-width="2"></ellipse>
+                                            </svg>
+                                            <span class="footer__widget--info__text">Pionerskaya 12, Kotovsk, Russia</span>
+                                        </li>
+                                        <li class="footer__widget--info_list">
+                                            <svg class="footer__widget--info__icon" width="20" height="20"
+                                                 viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M13.31 1.52371L18.6133 2.11296C18.6133 2.11296 19.2026 7.41627 13.31 13.3088C7.41748 19.2014 2.11303 18.6133 2.11303 18.6133L1.52377 13.31L5.64971 10.9529L7.71153 13.0148C7.71153 13.0148 9.18467 12.7201 10.9524 10.9524C12.7202 9.18461 13.0148 7.71147 13.0148 7.71147L10.953 5.64965L13.31 1.52371Z"
+                                                      stroke="currentColor" stroke-width="2"></path>
+                                            </svg>
+                                            <a class="footer__widget--info__text" href="tel:+79169378989">: +7 (916) 937
+                                                89 89 </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="social__share footer__social d-flex">
+                                        <li class="social__share--list">
+                                            <a class="social__share--icon" target="_blank"
+                                               href="https://vk.com/parfum_nota">
+                                                <svg style="color: rgb(0, 0, 0);" xmlns="http://www.w3.org/2000/svg"
+                                                     width="40" zoomAndPan="magnify" viewBox="0 0 30 30.000001"
+                                                     height="40" preserveAspectRatio="xMidYMid meet" version="1.0">
+                                                    <defs>
+                                                        <clipPath id="id1">
+                                                            <path d="M 2.371094 2.394531 L 26 2.394531 L 26 26 L 2.371094 26 Z M 2.371094 2.394531 "
+                                                                  clip-rule="nonzero" fill="#000000"></path>
+                                                        </clipPath>
+                                                    </defs>
+                                                    <g clip-path="url(#id1)">
+                                                        <path fill="#000000"
+                                                              d="M 13.496094 2.597656 C 10.730469 2.804688 8.210938 3.941406 6.230469 5.875 C 3.625 8.414062 2.375 12.011719 2.839844 15.625 C 3.414062 20.140625 6.601562 23.902344 10.976562 25.234375 C 14.359375 26.265625 18.125 25.652344 20.992188 23.613281 C 24.515625 21.101562 26.347656 16.9375 25.804688 12.675781 C 25.230469 8.15625 22.042969 4.394531 17.667969 3.0625 C 16.304688 2.660156 14.914062 2.503906 13.496094 2.601562 Z M 14.378906 9.773438 C 14.96875 9.832031 15.265625 9.925781 15.398438 10.097656 C 15.433594 10.144531 15.488281 10.261719 15.523438 10.359375 C 15.589844 10.5625 15.59375 10.792969 15.550781 12.527344 C 15.523438 13.609375 15.539062 13.945312 15.628906 14.183594 C 15.726562 14.460938 15.960938 14.585938 16.164062 14.480469 C 16.347656 14.382812 16.777344 13.914062 17.058594 13.492188 C 17.707031 12.53125 18.101562 11.789062 18.574219 10.640625 C 18.671875 10.414062 18.800781 10.261719 18.933594 10.226562 C 18.984375 10.210938 19.742188 10.199219 20.667969 10.195312 L 22.308594 10.191406 L 22.449219 10.25 C 22.632812 10.304688 22.714844 10.429688 22.695312 10.621094 C 22.695312 10.980469 22.320312 11.722656 21.675781 12.625 C 21.585938 12.75 21.253906 13.195312 20.933594 13.613281 C 20.230469 14.535156 20.078125 14.75 19.972656 14.976562 C 19.835938 15.257812 19.871094 15.492188 20.082031 15.765625 C 20.140625 15.84375 20.453125 16.15625 20.769531 16.460938 C 21.65625 17.3125 22.058594 17.757812 22.386719 18.246094 C 22.621094 18.601562 22.714844 18.859375 22.675781 19.085938 C 22.65625 19.207031 22.535156 19.355469 22.394531 19.425781 C 22.230469 19.511719 21.976562 19.527344 20.582031 19.546875 L 19.261719 19.5625 L 19.046875 19.492188 C 18.503906 19.3125 18.140625 19.007812 17.316406 18.054688 C 16.859375 17.527344 16.519531 17.265625 16.285156 17.265625 C 16.070312 17.265625 15.789062 17.550781 15.679688 17.910156 C 15.597656 18.148438 15.570312 18.335938 15.542969 18.75 C 15.515625 19.246094 15.457031 19.355469 15.15625 19.480469 C 15.046875 19.53125 13.683594 19.546875 13.324219 19.507812 C 12.601562 19.429688 11.933594 19.199219 11.269531 18.8125 C 10.304688 18.25 9.714844 17.742188 9.082031 16.9375 C 7.984375 15.53125 7.234375 14.335938 6.324219 12.535156 C 5.976562 11.832031 5.558594 10.925781 5.492188 10.707031 C 5.425781 10.484375 5.519531 10.300781 5.738281 10.230469 C 5.8125 10.207031 6.234375 10.195312 7.191406 10.179688 L 8.539062 10.167969 L 8.695312 10.226562 C 8.941406 10.320312 9.042969 10.445312 9.214844 10.851562 C 9.359375 11.195312 10.136719 12.753906 10.378906 13.191406 C 10.628906 13.628906 10.890625 14 11.121094 14.214844 C 11.402344 14.492188 11.527344 14.558594 11.726562 14.542969 C 11.894531 14.527344 11.9375 14.488281 12.042969 14.261719 C 12.296875 13.714844 12.335938 11.867188 12.109375 11.140625 C 11.980469 10.726562 11.785156 10.570312 11.246094 10.453125 C 11.152344 10.433594 11.152344 10.398438 11.238281 10.273438 C 11.445312 9.976562 11.816406 9.832031 12.523438 9.773438 C 12.910156 9.742188 14.058594 9.738281 14.375 9.773438 Z M 14.378906 9.773438 "
+                                                              fill-opacity="1" fill-rule="nonzero"></path>
+                                                    </g>
+                                                </svg>
+                                                <span class="visually-hidden">VK</span>
+                                            </a>
+                                        </li>
+                                        <li class="social__share--list">
+                                            <a class="social__share--icon" target="_blank" href="https://wa.me/message/HTJESAQ366IVJ1">
+                                                <svg style="color: rgb(0, 0, 0);" xmlns="http://www.w3.org/2000/svg"
+                                                     width="30.87" height="30.87" fill="currentColor"
+                                                     class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                                    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"
+                                                          fill="#000000"></path>
+                                                </svg>
+                                                <span class="visually-hidden">WhatsApp</span>
+                                            </a>
+                                        </li>
+                                        <li class="social__share--list">
+                                            <a class="social__share--icon" target="_blank"
+                                               href="https://instagram.com/n.o.t.a_parfum?igshid=MzRlODBiNWFlZA==">
+                                                <svg style="color: rgb(0, 0, 0);" xmlns="http://www.w3.org/2000/svg"
+                                                     width="30.87" height="30.87" fill="currentColor"
+                                                     class="bi bi-instagram" viewBox="0 0 16 16">
+                                                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
+                                                          fill="#000000"></path>
+                                                </svg>
+                                                <span class="visually-hidden">Instagram</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+            <!-- End footer section -->
+
+   <!-- Scroll top bar -->
+   <button id="scroll__top"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 244l144-144 144 144M256 120v292"/></svg></button>
+
+   <!-- All Script JS Plugins here  -->
+   <script src="{% static '/store/js/vendor/popper.js' %}" defer="defer"></script>
+   <script src="{% static '/store/js/vendor/bootstrap.min.js' %}" defer="defer"></script>
+   <script src="{% static '/store/js/plugins/swiper-bundle.min.js' %}"></script>
+   <script src="{% static '/store/js/plugins/glightbox.min.js' %}"></script>
+ 
+  <!-- Customscript js -->
+  <script src="{% static '/store/js/script.js' %}"></script>
+  
+</body>
+</html>
